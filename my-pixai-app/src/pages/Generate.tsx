@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 // Types for our selections
 type GridSelection = {
@@ -15,6 +17,8 @@ export const Generate = () => {
   // State for selections
   const [selectedGridItem, setSelectedGridItem] = useState<GridSelection | null>(null);
   const [selectedStyle, setSelectedStyle] = useState<StyleSelection | null>(null);
+  const navigate = useNavigate(); 
+
 
   // Check if both selections are made
   const isGenerateEnabled = selectedGridItem !== null && selectedStyle !== null;
@@ -35,16 +39,17 @@ export const Generate = () => {
   const handleGenerate = () => {
     if (!isGenerateEnabled) return;
 
-    // This is where you'll send data to backend
+    // This is where to send data to backend
     const dataToSend = {
       selectedGrid: selectedGridItem,
       selectedStyle: selectedStyle
     };
     
     console.log('Data to send to backend:', dataToSend);
-    // TODO: Add API call here
+    // TODO: Add API call here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Example:
     // await generateWallpaper(dataToSend);
+    navigate('/generate/more');
   };
 
   return (
