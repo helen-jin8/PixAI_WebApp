@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import React from 'react';
+import EmailModal from '../components/Layout/EmailModal';
 
-export const GenerateMore = () => {
+export const GenerateMore: React.FC = () => {  // Changed back to export const
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const galleryImages = [
     '/api/placeholder/400/400',
@@ -42,12 +43,12 @@ export const GenerateMore = () => {
           </div>
         </div>
 
-      {/* First Register Button - Single Line */}
-      <div className="max-w-md mx-auto">
-        <button className="w-full bg-purple-600 text-white py-3 px-8 rounded-full hover:bg-indigo-700 transition-colors text-base font-medium whitespace-nowrap">
-          Register PixAI for High-Res Wallpaper
-        </button>
-      </div>
+        {/* First Register Button - Single Line */}
+        <div className="max-w-md mx-auto">
+          <button className="w-full bg-purple-600 text-white py-3 px-8 rounded-full hover:bg-indigo-700 transition-colors text-base font-medium whitespace-nowrap">
+            Register PixAI for High-Res Wallpaper
+          </button>
+        </div>
       </div>
 
       {/* Bottom Section with Black Background */}
@@ -78,88 +79,8 @@ export const GenerateMore = () => {
         </div>
       </div>
 
-      {/* Modal Overlay */}
-      {showModal && (
-        <div 
-          className="fixed inset-0 bg-black/90 z-50 flex flex-col items-center justify-center transition-opacity duration-300"
-          onClick={(e: React.MouseEvent) => {
-            e.preventDefault();
-            setShowModal(false);
-          }}
-        >
-          {/* Modal Content */}
-          <div 
-            className="p-4 max-w-2xl w-full" 
-            onClick={(e: React.MouseEvent) => {
-              e.stopPropagation();
-            }}
-          >
-            {/* Large Image */}
-            <div className="relative mb-6">
-              <img 
-                src="/api/placeholder/800/1200" 
-                alt="Generated art large"
-                className="w-full h-auto rounded-lg shadow-2xl"
-              />
-            </div>
-
-            {/* Buttons Container */}
-            <div className="flex gap-4 justify-center">
-              <button className="bg-pink-500 text-white py-2 px-8 rounded-full hover:bg-indigo-700 transition-colors">
-                Register for PixAI
-              </button>
-              <button 
-                className="bg-gray-600 text-white py-2 px-4 rounded-full hover:bg-gray-700 transition-colors"
-                aria-label="Download image"
-                onClick={(e: React.MouseEvent) => {
-                  e.preventDefault();
-                  // Download logic here
-                }}
-              >
-                <svg 
-                  className="w-5 h-5" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" 
-                  />
-                </svg>
-              </button>
-            </div>
-
-            {/* Close Button */}
-            <button 
-              className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
-              onClick={(e: React.MouseEvent) => {
-                e.preventDefault();
-                setShowModal(false);
-              }}
-              aria-label="Close modal"
-            >
-              <svg 
-                className="w-6 h-6" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M6 18L18 6M6 6l12 12" 
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Email Modal */}
+      <EmailModal showModal={showModal} setShowModal={setShowModal} />
     </div>
   );
 };
