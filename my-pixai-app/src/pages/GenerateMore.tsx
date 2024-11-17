@@ -44,9 +44,11 @@ export const GenerateMore: React.FC = () => {  // Changed back to export const
         </div>
 
         {/* First Register Button - Single Line */}
-        <div className="max-w-md mx-auto">
-          <button className="w-full bg-purple-600 text-white py-3 px-8 rounded-full hover:bg-indigo-700 transition-colors text-base font-medium whitespace-nowrap">
-            Register PixAI for High-Res Wallpaper
+        <div className="text-center">
+          <button className="w-fit bg-purple-600 text-white py-3 px-8 rounded-full hover:bg-indigo-700 transition-colors text-base font-medium whitespace-nowrap"
+          onClick={() => setShowModal(true)}
+          >
+            Get Wallpaper freely now
           </button>
         </div>
       </div>
@@ -54,9 +56,11 @@ export const GenerateMore: React.FC = () => {  // Changed back to export const
       {/* Bottom Section with Black Background */}
       <div className="bg-black mt-auto p-8">
         {/* Second Register Button - Smaller */}
-        <div className="max-w-xs mx-auto mb-4">
-          <button className="w-full bg-purple-700 text-white py-2 px-4 rounded-xl hover:bg-indigo-700 transition-colors text-sm">
-            Register to Unlock Even More!
+        <div className="text-center mb-8">
+          <button className="bg-purple-600 text-white py-3 px-8 rounded-full hover:bg-indigo-700 transition-colors text-sm"
+          onClick={() => window.open("https://pixai.art/", "_blank", "noopener,noreferrer")}
+          >
+            Unlock Even More!
           </button>
         </div>
 

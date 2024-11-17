@@ -82,6 +82,7 @@ const EmailModal: React.FC<EmailModalProps> = ({ showModal, setShowModal }) => {
               </p>
               <button
                 className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors inline-flex items-center gap-2"
+                onClick={() => window.open("https://pixai.art/sign-up", "_blank", "noopener,noreferrer")}
               >
                 Apply Now - It's Free
                 <span className="bg-white text-purple-600 px-2 py-0.5 rounded text-sm">
