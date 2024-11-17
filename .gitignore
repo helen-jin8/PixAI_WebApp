@@ -1,0 +1,4 @@
+# Repository root .gitignore
+.DS_Store
+*.pem
+.vscode
