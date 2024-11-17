@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import LoadingPage from './LoadingPage';  // We can remove useLocation since it's not being used
 
 // Types for our selections
 type GridSelection = {
@@ -17,8 +17,8 @@ export const Generate = () => {
   // State for selections
   const [selectedGridItem, setSelectedGridItem] = useState<GridSelection | null>(null);
   const [selectedStyle, setSelectedStyle] = useState<StyleSelection | null>(null);
-  const navigate = useNavigate(); 
-
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   // Check if both selections are made
   const isGenerateEnabled = selectedGridItem !== null && selectedStyle !== null;
@@ -36,8 +36,10 @@ export const Generate = () => {
   }));
 
   // Handle generate click - prepare data for backend
-  const handleGenerate = () => {
+  const handleGenerate = async () => {  // Added async keyword here
     if (!isGenerateEnabled) return;
+
+    setIsLoading(true);
 
     // This is where to send data to backend
     const dataToSend = {
@@ -46,11 +48,25 @@ export const Generate = () => {
     };
     
     console.log('Data to send to backend:', dataToSend);
-    // TODO: Add API call here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // Example:
-    // await generateWallpaper(dataToSend);
-    navigate('/generate/more');
+
+    try {
+      // Simulate API call with random delay between 2-4 seconds
+      await new Promise(resolve => setTimeout(resolve, 2000 + Math.random() * 2000));
+      
+      // After "generation" is complete, navigate to the next page
+      navigate('/generate/more');
+    } catch (error) {
+      console.error('Generation failed:', error);
+      // Handle error case
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  // Show loading page if in loading state
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="p-4 max-w-md mx-auto">
